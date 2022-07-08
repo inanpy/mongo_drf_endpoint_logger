@@ -2,10 +2,12 @@ import time
 import json
 from django.conf import settings
 from django.urls import resolve
-
+from django.utils import timezone
 
 from core.utils import (
     get_compiled_headers,
+    check_private_data,
+    get_request_ip
 )
 
 
@@ -96,6 +98,17 @@ class EndpointLoggerMiddleware:
                 else:
                     request_url = request.build_absolute_uri()
 
+                data = dict(
+                    url=request_url,
+                    headers=check_private_data(request_headers),
+                    body=check_private_data(request_data),
+                    method=request_method,
+                    client_ip_address=get_request_ip(request),
+                    response=check_private_data(response_body),
+                    status_code=response.status_code,
+                    execution_time=time.time() - request_start_time,
+                    added_on=timezone.now()
+                )
             else:
                 response = self.get_response(request)
             return response
