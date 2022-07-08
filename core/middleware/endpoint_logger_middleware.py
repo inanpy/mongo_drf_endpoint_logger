@@ -10,6 +10,8 @@ from core.utils import (
     get_request_ip
 )
 
+from core.threads import LOGGER_THREAD
+
 
 class EndpointLoggerMiddleware:
     def __init__(self, get_response):
@@ -25,7 +27,6 @@ class EndpointLoggerMiddleware:
 
         check_key_type_in_settings = {
             'MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB': bool,
-            'MONGO_DRF_ENDPOINT_LOGGER_SIGNAL': bool,
             'MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE': str,
             'MONGO_DRF_ENDPOINT_LOGGER_SKIP_URL_NAME': list or tuple,
             'MONGO_DRF_ENDPOINT_LOGGER_SKIP_NAMESPACE': list or tuple,
@@ -41,9 +42,10 @@ class EndpointLoggerMiddleware:
                 if type(value_attr) is key_type:
                     setattr(self, key, value_attr)
 
-    def __call__(self, request):
+        # TODO: i must add signal for other DB system.
 
-        if self.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB or self.MONGO_DRF_ENDPOINT_LOGGER_SIGNAL:
+    def __call__(self, request):
+        if self.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB:
             request_url_name = resolve(request.path).url_name
             request_namespace = resolve(request.path).namespace
             if (
@@ -103,12 +105,22 @@ class EndpointLoggerMiddleware:
                     headers=check_private_data(request_headers),
                     body=check_private_data(request_data),
                     method=request_method,
-                    client_ip_address=get_request_ip(request),
+                    ip=get_request_ip(request),
                     response=check_private_data(response_body),
                     status_code=response.status_code,
                     execution_time=time.time() - request_start_time,
-                    added_on=timezone.now()
+                    created_date=timezone.now()
                 )
+                if self.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB:
+                    if LOGGER_THREAD:
+                        d = data.copy()
+                        d['headers'] = json.dumps(d['headers'], indent=4)
+                        if request_data:
+                            d['body'] = json.dumps(d['body'], indent=4)
+                        d['response'] = json.dumps(d['response'], indent=4)
+                        LOGGER_THREAD.put_log_data(data=d)
             else:
-                response = self.get_response(request)
-            return response
+                return response
+        else:
+            response = self.get_response(request)
+        return response

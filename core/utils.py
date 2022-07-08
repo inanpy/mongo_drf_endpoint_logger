@@ -43,3 +43,10 @@ def check_private_data(data):
         if type(value) == list:
             data[key] = [check_private_data(item) for item in data[key]]
     return data
+
+
+def check_logger_active():
+    logger = False
+    if hasattr(settings, 'MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB'):
+        logger = settings.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB
+    return logger
