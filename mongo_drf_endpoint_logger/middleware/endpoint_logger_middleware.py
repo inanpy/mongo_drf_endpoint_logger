@@ -17,13 +17,11 @@ class EndpointLoggerMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB = False
-        self.MONGO_DRF_ENDPOINT_LOGGER_SIGNAL = False
         self.MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE = 'ABSOLUTE'
         self.MONGO_DRF_ENDPOINT_LOGGER_SKIP_URL_NAME = []
         self.MONGO_DRF_ENDPOINT_LOGGER_SKIP_NAMESPACE = []
         self.MONGO_DRF_ENDPOINT_LOGGER_METHODS = []
         self.MONGO_DRF_ENDPOINT_LOGGER_STATUS_CODES = []
-        self.MONGO_DRF_ENDPOINT_LOGGER_EXCLUDE_KEYS = []
 
         check_key_type_in_settings = {
             'MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB': [bool],
@@ -32,7 +30,6 @@ class EndpointLoggerMiddleware:
             'MONGO_DRF_ENDPOINT_LOGGER_SKIP_NAMESPACE': [list, tuple],
             'MONGO_DRF_ENDPOINT_LOGGER_METHODS': [list, tuple],
             'MONGO_DRF_ENDPOINT_LOGGER_STATUS_CODES': [list, tuple],
-            'MONGO_DRF_ENDPOINT_LOGGER_EXCLUDE_KEYS': [list, tuple]
         }
 
         # Check settings attr with value type
