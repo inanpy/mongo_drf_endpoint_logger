@@ -1,5 +1,13 @@
 # Mongo DRF Endpoint Logger [MDRFEL]
-![](https://forthebadge.com/images/badges/made-with-python.svg)	![](http://forthebadge.com/images/badges/built-with-love.svg) 
+![](https://forthebadge.com/images/badges/made-with-python.svg)	![](http://forthebadge.com/images/badges/built-with-love.svg)
+
+ 
+![](	https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green)
+![](https://img.shields.io/badge/django%20rest-ff1709?style=for-the-badge&logo=django&logoColor=white)
+![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![https://pypi.org/project/mongo-drf-endpoint-logger/](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
+![https://github.com/inanpy/mongo_drf_endpoint_logger](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
+
 
 - For your Django Rest Framework project, an API logger with MongoDb.
 
