@@ -1,6 +1,6 @@
 import mongoengine
 
-from core.utils import check_logger_active
+from mongo_drf_endpoint_logger.utils import check_logger_active
 
 
 if check_logger_active():

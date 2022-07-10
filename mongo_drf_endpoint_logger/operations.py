@@ -5,7 +5,7 @@ from threading import Thread
 from django.conf import settings
 from django.db.utils import OperationalError
 
-from core.models import ApiLog
+from mongo_drf_endpoint_logger.models import ApiLog
 
 
 class InsertLogIntoDatabase(Thread):

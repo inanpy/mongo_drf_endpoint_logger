@@ -23,19 +23,19 @@
 import setuptools
 
 
-def get_long_desc():
-    with open("README.md", "r") as fh:
-        long_description = fh.read()
-    return long_description
+#def get_long_desc():
+#    with open("../README.md", "r") as fh:
+#        long_description = fh.read()
+#    return long_description
 
 
 setuptools.setup(
-    name="drf_api_logger",
-    version="0.0.1",
+    name="mongo_drf_endpoint_logger",
+    version="0.0.3",
     author="M. Inan Delibas",
     author_email="inanndelibas@gmail.com",
     description="An API Logger for your Django Rest Framework project with Mongo DB.",
-    long_description=get_long_desc(),
+    long_description="Test",
     long_description_content_type="text/markdown",
     url="https://github.com/inanpy/mongo_drf_endpoint_logger",
     packages=setuptools.find_packages(),

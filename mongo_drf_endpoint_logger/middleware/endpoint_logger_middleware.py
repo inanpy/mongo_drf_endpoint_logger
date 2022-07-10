@@ -4,13 +4,13 @@ from django.conf import settings
 from django.urls import resolve
 from django.utils import timezone
 
-from core.utils import (
+from mongo_drf_endpoint_logger.utils import (
     get_compiled_headers,
     check_private_data,
     get_request_ip
 )
 
-from core.threads import LOGGER_THREAD
+from mongo_drf_endpoint_logger.threads import LOGGER_THREAD
 
 
 class EndpointLoggerMiddleware:
@@ -26,20 +26,20 @@ class EndpointLoggerMiddleware:
         self.MONGO_DRF_ENDPOINT_LOGGER_EXCLUDE_KEYS = []
 
         check_key_type_in_settings = {
-            'MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB': bool,
-            'MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE': str,
-            'MONGO_DRF_ENDPOINT_LOGGER_SKIP_URL_NAME': list or tuple,
-            'MONGO_DRF_ENDPOINT_LOGGER_SKIP_NAMESPACE': list or tuple,
-            'MONGO_DRF_ENDPOINT_LOGGER_METHODS': list or tuple,
-            'MONGO_DRF_ENDPOINT_LOGGER_STATUS_CODES': list or tuple,
-            'MONGO_DRF_ENDPOINT_LOGGER_EXCLUDE_KEYS': list or tuple
+            'MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB': [bool],
+            'MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE': [str],
+            'MONGO_DRF_ENDPOINT_LOGGER_SKIP_URL_NAME': [list, tuple],
+            'MONGO_DRF_ENDPOINT_LOGGER_SKIP_NAMESPACE': [list, tuple],
+            'MONGO_DRF_ENDPOINT_LOGGER_METHODS': [list, tuple],
+            'MONGO_DRF_ENDPOINT_LOGGER_STATUS_CODES': [list, tuple],
+            'MONGO_DRF_ENDPOINT_LOGGER_EXCLUDE_KEYS': [list, tuple]
         }
 
         # Check settings attr with value type
-        for key, key_type in check_key_type_in_settings:
+        for key, key_type in check_key_type_in_settings.items():
             if hasattr(settings, key):
                 value_attr = getattr(settings, key)
-                if type(value_attr) is key_type:
+                if type(value_attr) in key_type:
                     setattr(self, key, value_attr)
 
         # TODO: i must add signal for other DB system.

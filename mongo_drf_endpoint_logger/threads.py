@@ -1,9 +1,9 @@
-from core.utils import check_logger_active
+from mongo_drf_endpoint_logger.utils import check_logger_active
 
 LOGGER_THREAD = None
 
 if check_logger_active():
-    from core.operations import InsertLogIntoDatabase
+    from mongo_drf_endpoint_logger.operations import InsertLogIntoDatabase
     import threading
 
     LOG_THREAD_NAME = 'insert_log_into_database'
