@@ -17,7 +17,7 @@ class EndpointLoggerMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB = False
-        self.MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE = 'ABSOLUTE'
+        self.MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE = 'ABSOLUTE_URI'
         self.MONGO_DRF_ENDPOINT_LOGGER_SKIP_URL_NAME = []
         self.MONGO_DRF_ENDPOINT_LOGGER_SKIP_NAMESPACE = []
         self.MONGO_DRF_ENDPOINT_LOGGER_METHODS = []
