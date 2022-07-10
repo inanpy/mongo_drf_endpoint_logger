@@ -114,10 +114,10 @@ class EndpointLoggerMiddleware:
                 if self.MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB:
                     if LOGGER_THREAD:
                         d = data.copy()
-                        d['headers'] = json.dumps(d['headers'], indent=4)
+                        d['headers'] = json.dumps(d['headers'])
                         if request_data:
-                            d['body'] = json.dumps(d['body'], indent=4)
-                        d['response'] = json.dumps(d['response'], indent=4)
+                            d['body'] = json.dumps(d['body'])
+                        d['response'] = json.dumps(d['response'])
                         LOGGER_THREAD.put_log_data(data=d)
             else:
                 return response
