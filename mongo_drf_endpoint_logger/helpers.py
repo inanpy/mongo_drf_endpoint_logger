@@ -5,11 +5,11 @@ from mongo_drf_endpoint_logger.serializers import LogInsertSerializer
 
 """
     url: CharField,
-    headers: JsonField,
-    body: JsonField,
+    headers: DictField,
+    body: DictField,
     method: CharField,
     ip: CharField,
-    response: JsonField,
+    response: DictField,
     status_code: CharField",
     execution_time: string,
     created_date: DateTimeField

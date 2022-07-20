@@ -5,11 +5,11 @@ from mongo_drf_endpoint_logger.utils import check_private_data
 
 class LogInsertSerializer(serializers.Serializer):
     url = serializers.CharField(max_length=99999)
-    headers = serializers.JSONField()
-    body = serializers.JSONField()
+    headers = serializers.DictField()
+    body = serializers.DictField()
     method = serializers.CharField(min_length=3, max_length=10)
     ip = serializers.CharField(min_length=5, max_length=20)
-    response = serializers.JSONField()
+    response = serializers.DictField()
     status_code = serializers.CharField(max_length=3)
     execution_time = serializers.CharField()
     created_date = serializers.DateTimeField()
