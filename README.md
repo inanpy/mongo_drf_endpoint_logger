@@ -8,8 +8,7 @@
 ![https://pypi.org/project/mongo-drf-endpoint-logger/](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
 ![https://github.com/inanpy/mongo_drf_endpoint_logger](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 
-
-![version](https://img.shields.io/badge/version-0.0.5-green.svg)
+![version](https://img.shields.io/badge/version-0.1.6-green.svg)
 [![Open Source](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://opensource.org/)
 [![Downloads](https://static.pepy.tech/personalized-badge/mongo-drf-endpoint-logger?period=total&units=none&left_color=black&right_color=orange&left_text=Total%20Downloads)](http://pepy.tech/project/mongo-drf-endpoint-logger)
 [![Downloads](https://static.pepy.tech/personalized-badge/mongo-drf-endpoint-logger?period=month&units=none&left_color=black&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/mongo-drf-endpoint-logger)
@@ -136,36 +135,56 @@ MONGO_DRF_ENDPOINT_LOGGER_STATUS_CODES = ['email', 'password']
 ## Manual Log Insert
 
 ```python
-from mongo_drf_endpoint_logger.helpers import insert_log
+from mongo_drf_endpoint_logger.helpers import async_insert_log, sync_insert_log
 
-data = {
-    'url': 'testURL',
-    'headers': {
-        'hkey': 'hvalue',
-        'token': '12345'
-    },
-    'body': {
-        'bkey': 'bvalue'
-    },
-    'ip': '127.0.0.1',
-    'response': {
-        'rkey': 'rvlue'
-    },
-    'status_code': '200',
-    'execution_time': '123',
-    'created_date': "2022-07-11 15:19:41.184786",
-    'method': 'POST'
-}
+"""
+sync_insert_log : Create a log with SYNC.
+async_insert_log: Create a log with THREAD, so it will be ASYNC.
 
-insert_log(data)
-# It's would work with different thread.
+    url: CharField: Required
+    headers: DictField: Required
+    body: DictField: Required
+    method: CharField: Required
+    response: DictField: Required
+    status_code: CharField: Optional, Default: 200
+    execution_time: string, Optional, Default: "0"
+    ip: CharField: Optional, Default: "0.0.0.0"
+    created_date: DateTimeField: Optional, Default: datetime.now()
+"""
+
+sync_insert_log(
+    url="testUrl",
+    headers={"hkey": "hvalue"},
+    body={"bkey": "bvalue"},
+    ip="127.0.0.1",
+    response={"rkey": "rvalue"},
+    status_code="200",
+    execution_time="0.2",
+    method="POST",
+    created_date="2022-07-11 15:19:41.184786",
+)
+
+# OR
+
+async_insert_log(
+    url="testUrl",
+    headers={"hkey": "hvalue"},
+    body={"bkey": "bvalue"},
+    ip="127.0.0.1",
+    response={"rkey": "rvalue"},
+    status_code="200",
+    execution_time="0.2",
+    method="POST",
+    created_date="2022-07-11 15:19:41.184786",
+)
+
 ```
 
 ## TODO
 
 1. Django Admin Integration
 2. Interval Information for Readme
-3. Unit Tests 
+3. Unit Tests
 
 ## Contributing
 
