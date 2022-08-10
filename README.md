@@ -8,7 +8,7 @@
 ![https://pypi.org/project/mongo-drf-endpoint-logger/](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
 ![https://github.com/inanpy/mongo_drf_endpoint_logger](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 
-![version](https://img.shields.io/badge/version-0.1.6-green.svg)
+![version](https://img.shields.io/badge/version-0.1.7-green.svg)
 [![Open Source](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://opensource.org/)
 [![Downloads](https://static.pepy.tech/personalized-badge/mongo-drf-endpoint-logger?period=total&units=none&left_color=black&right_color=orange&left_text=Total%20Downloads)](http://pepy.tech/project/mongo-drf-endpoint-logger)
 [![Downloads](https://static.pepy.tech/personalized-badge/mongo-drf-endpoint-logger?period=month&units=none&left_color=black&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/mongo-drf-endpoint-logger)
@@ -146,7 +146,7 @@ async_insert_log: Create a log with THREAD, so it will be ASYNC.
     body: DictField: Required
     method: CharField: Required
     response: DictField: Required
-    status_code: CharField: Optional, Default: 200
+    status_code: IntegerFiled: Optional, Default: 200
     execution_time: string, Optional, Default: "0"
     ip: CharField: Optional, Default: "0.0.0.0"
     created_date: DateTimeField: Optional, Default: datetime.now()
@@ -158,7 +158,7 @@ sync_insert_log(
     body={"bkey": "bvalue"},
     ip="127.0.0.1",
     response={"rkey": "rvalue"},
-    status_code="200",
+    status_code=200,
     execution_time="0.2",
     method="POST",
     created_date="2022-07-11 15:19:41.184786",
@@ -172,7 +172,7 @@ async_insert_log(
     body={"bkey": "bvalue"},
     ip="127.0.0.1",
     response={"rkey": "rvalue"},
-    status_code="200",
+    status_code=200,
     execution_time="0.2",
     method="POST",
     created_date="2022-07-11 15:19:41.184786",

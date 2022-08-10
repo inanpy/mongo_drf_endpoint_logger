@@ -10,7 +10,7 @@ class LogInsertSerializer(serializers.Serializer):
     method = serializers.CharField(min_length=3, max_length=10)
     ip = serializers.CharField(min_length=5, max_length=20)
     response = serializers.DictField()
-    status_code = serializers.CharField(max_length=3)
+    status_code = serializers.IntegerField()
     execution_time = serializers.CharField()
     created_date = serializers.DateTimeField()
 

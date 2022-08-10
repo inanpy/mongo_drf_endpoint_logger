@@ -37,7 +37,7 @@ def dumps_validated_dict(data):
     return data
 
 
-def async_insert_log(url, headers, body, method, response, status_code="200", execution_time="0", ip="0.0.0.0",
+def async_insert_log(url, headers, body, method, response, status_code=200, execution_time="0", ip="0.0.0.0",
                      created_date=datetime.now()
                      ):
     log_object = LogData(url, headers, body, method, response, status_code, execution_time, ip, created_date)
@@ -49,7 +49,7 @@ def async_insert_log(url, headers, body, method, response, status_code="200", ex
         LOGGER_THREAD.put_log_data(data=d)
 
 
-def sync_insert_log(url, headers, body, method, response, status_code="200", execution_time="0", ip="0.0.0.0",
+def sync_insert_log(url, headers, body, method, response, status_code=200, execution_time="0", ip="0.0.0.0",
                     created_date=datetime.now()
                     ):
     log_object = LogData(url, headers, body, method, response, status_code, execution_time, ip, created_date)
