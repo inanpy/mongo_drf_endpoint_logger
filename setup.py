@@ -31,7 +31,7 @@ def get_description():
 
 setuptools.setup(
     name="mongo_drf_endpoint_logger",
-    version="0.1.7",
+    version="0.1.8",
     author="Inan Delibas",
     author_email="inanndelibas@gmail.com",
     description="An API Logger for your Django Rest Framework project with Mongo DB.",

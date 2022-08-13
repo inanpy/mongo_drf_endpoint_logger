@@ -8,7 +8,7 @@
 ![https://pypi.org/project/mongo-drf-endpoint-logger/](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
 ![https://github.com/inanpy/mongo_drf_endpoint_logger](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 
-![version](https://img.shields.io/badge/version-0.1.7-green.svg)
+![version](https://img.shields.io/badge/version-0.1.8-green.svg)
 [![Open Source](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://opensource.org/)
 [![Downloads](https://static.pepy.tech/personalized-badge/mongo-drf-endpoint-logger?period=total&units=none&left_color=black&right_color=orange&left_text=Total%20Downloads)](http://pepy.tech/project/mongo-drf-endpoint-logger)
 [![Downloads](https://static.pepy.tech/personalized-badge/mongo-drf-endpoint-logger?period=month&units=none&left_color=black&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/mongo-drf-endpoint-logger)
@@ -86,7 +86,8 @@ MONGO_DRF_ENDPOINT_LOGGER_LOG_TO_DB = True
 
 ```python
 # Default: "ABSLOLUTE", Description: Url path type information.
-# ABSOLUTE_URI, FULL_PATH_URI, RAW_URI
+# ABSOLUTE_URI, FULL_PATH_URI
+# RAW_URI just for Django<4.0 – https://docs.djangoproject.com/en/4.0/releases/4.0/
 MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE = "ABSOLUTE_URI"
 ```
 

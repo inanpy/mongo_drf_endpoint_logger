@@ -92,6 +92,7 @@ class EndpointLoggerMiddleware:
                     request_url = request.build_absolute_uri()
                 elif self.MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE == 'FULL_PATH_URI':
                     request_url = request.get_full_path()
+                # RAW_URI Django < 4.0 # https://docs.djangoproject.com/en/4.0/releases/4.0/
                 elif self.MONGO_DRF_ENDPOINT_LOGGER_PATH_TYPE == 'RAW_URI':
                     request_url = request.get_raw_uri()
                 else:
