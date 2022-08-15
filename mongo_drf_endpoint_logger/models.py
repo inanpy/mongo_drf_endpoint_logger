@@ -11,6 +11,6 @@ if check_logger_active():
         method = mongoengine.StringField(max_length=10)
         ip = mongoengine.StringField(max_length=50)
         response = mongoengine.DictField()
-        status_code = mongoengine.StringField()
+        status_code = mongoengine.IntField()
         execution_time = mongoengine.StringField(max_value=8)
         created_date = mongoengine.DateTimeField()
